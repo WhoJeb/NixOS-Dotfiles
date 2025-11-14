@@ -1,0 +1,360 @@
+{
+  "group/sys": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "childs",
+      "transition-left-to-right": false,
+      "click-to-reveal": true,
+    },
+    "modules": [
+      "custom/nix", 
+      "hyprland/window",
+    ], 
+  },
+
+  // Hardware shit
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "childs",
+      "transition-left-to-right": false,
+      "click-to-reveal": true,
+    },
+
+    "modules": [
+      "custom/hardware-wrap",
+      "tray",
+      "custom/separator2",
+      "idle_inhibitor",
+      "custom/separator2",
+      "bluetooth",
+      "custom/separator2",
+      "network",
+      "custom/separator2",
+      "cpu",
+      "custom/separator2",
+      "memory",
+      "custom/separator2",
+      "temperature",
+    ],
+  },
+
+  // Hardware label
+  "custom/hardware-wrap": {
+	  "format": "[   ]",
+	  "tooltip-format": "Hardware group",
+  },
+
+  "niri/workspaces": {
+    "disable-scroll": true,
+    "format": "{icon}",
+    "format-icons": {
+	"active": "",
+	"default": ""
+    },
+    
+    // "format": "{icon}",
+    // "format-icons": {
+    //  "1": "I",
+    //  "2": "II",
+    //  "3": "III",
+    //  "4": "IV",
+    //  "5": "V",
+    //  "6": "VI",
+    //  "7": "VII",
+    //  "8": "VIII",
+    //  "9": "IX",
+    //  "10": "X",
+    // },
+  },
+  
+  "niri/window": {
+    "max-length": 20, //Character Count
+    "separate-ouptputs": true,
+    "icon": true,
+    "format": "[ {title} ]",
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X",
+    },
+  },
+
+  "hyprland/window": {
+    "max-length": 20, //Character Count
+    "separate-ouptputs": true,
+    "icon": true,
+  },
+
+  "hyprland/submap": {
+    "format": "[ {} ]",
+    "format-icons": {
+      "move": " Move",
+      "resize": "󰩨 Resize",
+    },
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10,
+    "show-passive-items": true,
+    "reverse-direction": true,
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "[ {:%I:%M %p} ]", // %b %d %Y  --Date formatting
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "[  {:%a %b %d} ]",
+  },
+
+  "temperature": {
+    "critical-threshold": 80,
+    "interval": 2,
+    "format": " {temperatureC:>2}°C",
+    "format-icons": ["", "", ""],
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": "  {usage:>2}%",
+  },
+
+  "memory": {
+    "interval": 2,
+    "format": "  {used:0.1f}G/{total:0.1f}G",
+  },
+
+  "disk": {
+    "interval": 15,
+    "format": "󰋊 {percentage_used:>2}%",
+  },
+
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{icon} {percent:>2}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+  },
+
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "interval": 1,
+    "format-wifi": " {bandwidthTotalBytes:>2}", //({essid} {signalStrength}%)
+    "format-ethernet": " {bandwidthTotalBytes:>2}",
+    "tooltip-format-ethernet": "󰈀 {ipaddr}",
+    "tooltip-format-wifi": "  {essid} ({signalStrength}%)",
+    "tooltip-format": "󰤯 {ifname} via {gwaddr}",
+    "format-linked": "󰀦 {ifname} (No IP)",
+    "format-disconnected": "󰀦 Disconnected", //Disconnected ⚠
+    "format-alt": "{ifname}: {gwaddr}/{cidr}",
+  },
+
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{icon} {volume}%", //{format_source}",
+    "format-bluetooth": "{icon} {volume}% 󰂯", //{format_source}",
+    "format-bluetooth-muted": "󰖁 {icon} 󰂯", //{format_source}",
+    "format-muted": "󰖁 {volume}%",
+    // "format-source": " {volume}%",
+    // "format-source-muted": "",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󱡒",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+  },
+
+  "wireplumber": {
+    "format": "[ {icon} {volume:>3}% ]",
+    "format-muted": "[ 󰖁 {volume:>3}% ]",
+    "format-icons": ["", "", ""],
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+  },
+
+  // This waybar build doesn't have support for cava.
+  // Need to edit the PKGBUILD and rebuild with -Dcava=enabled flag
+  "cava": {
+    "cava_config": "$XDG_CONFIG_HOME/cava/config",
+    "framerate": 30,
+    "autosens": 1,
+    "sensitivity": 100,
+    "bars": 14,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": false,
+    "waves": false,
+    "noise_reduction": 0.77,
+    "input_delay": 2,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "actions": {
+      "on-click-right": "mode",
+    },
+  },
+
+  "custom/cava": {
+    "exec": "$HOME/.config/waybar/cava.sh",
+  },
+
+  "battery": {
+    "format": "[ {icon} {capacity}% ]",
+    "format-alt": "[ {icon} {time} ]",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 2,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    }
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰈈",
+      "deactivated": "󰈉",
+    },
+    "start-activated": false,
+  },
+
+  "mpd": {
+    "format": "[   {artist} -> {title} ]",
+    // "format": "[ {stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} -> {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})  ]",
+    "format-disconnected": "[   Disconnected ]",
+    "format-stopped": "[   Stopped ]",
+    // "format-stopped": "[ {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped  ]",
+    "interval": 10,
+    // "title-len": 20,
+
+    "consume-icons": {
+      "on": " " // Icon shows only when "consume" is on
+    },
+    "random-icons": {
+        "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+        "on": " "
+    },
+    "repeat-icons": {
+        "on": " "
+    },
+    "single-icons": {
+        "on": " 1 "
+    },
+    "state-icons": {
+        "paused": "",
+        "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)",
+  },
+
+  "custom/power": {
+    "format": "[ {icon} ]",
+    "format-icons": "󱄅", //   󱄅
+    "exec-on-event": "true",
+    "on-click": "$HOME/.config/wofi/powermenu.sh",
+    "tooltip-format": "Power Menu",
+  },
+
+  "custom/power": {
+    "format": "[ {icon} ]",
+    "format-icons": "󱄅", //   󱄅
+    "exec-on-event": "true",
+    "on-click": "$HOME/.config/wofi/nixmenu.sh",
+    "tooltip-format": "Nix Menu",
+  },
+
+  "custom/kdeconnect": {
+    "format": "{icon}",
+    "format-icons": "",
+    "exec-on-event": "true",
+    "on-click": "kdeconnect-app",
+    "tooltip-format": "KDE Connect",
+  },
+
+  "custom/bluetooth": {
+    "format": "{icon}",
+    "format-icons": "",
+    "exec-on-event": "true",
+    "on-click": "$HOME/scripts/rofi-bluetooth",
+    "tooltip-format": "Bluetooth Menu",
+  },
+
+  "custom/wifi": {
+    "format": "{icon}",
+    "format-icons": "",
+    "exec-on-event": "true",
+    "on-click": "$HOME/scripts/rofi-wifi",
+    "tooltip-format": "Wifi Menu",
+  },
+
+  "custom/separator": {
+    "format": "{icon}",
+    "format-icons": "|",
+    "tooltip": false,
+  },
+
+  "custom/separator2": {
+    "format": "{icon}",
+    "format-icons": "|",
+    "tooltip": false,
+  },
+
+  "custom/temp": {
+    "format": "{}",
+    "interval": 1,
+    "exec": "$HOME/scripts/temp",
+    "return-type": "json",
+    "tooltip": true,
+  },
+
+  "custom/pacman": {
+    "format": "  {}",
+    "interval": 3600, // every hour
+    "exec": "checkupdates | wc -l", // # of updates
+    "exec-if": "exit 0", // always run; consider advanced run conditions
+    "on-click": "foot -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
+    "signal": 8,
+  },
+
+  "custom/notification": {
+    "tooltip": true,
+    "format": " {}",
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
+  },
+}

@@ -1,0 +1,146 @@
+@import url("./colors-waybar.css");
+@import "colors-waybar.css";
+
+/* Make the entire bar transparent */
+window#waybar {
+  /* background: transparent; */
+  background: rgba(26, 27, 38, 0.0); /* assuming fg is defined in colors.css */
+  /*border-bottom: 3px solid rgba(125, 207, 255, 1);*/
+  /* color: @background; */
+  /* font-family: 'KogniGear', FontAwesome; */
+  font-family: 'MesloLGS Nerd Font', FontAwesome;
+  font-size: 20px;
+  padding: 0 5px;
+}
+
+/* Spacing between modules */
+#waybar > * {
+  margin: 0 8px;
+}
+
+/* Status text styles */
+#waybar .module {
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* On hover, slightly change background to highlight */
+#waybar .module:hover {
+  /* background-color: @selection;*/
+}
+
+/* Make sure icons inherit colors */
+#waybar .module i {
+  color: inherit;
+  margin-right: 6px;
+}
+
+/* For separator if you use one */
+#waybar .separator {
+  margin: 0 8px;
+  color: @cursor;
+}
+
+#waybar .separator2 {
+  font-size: 10px;
+  margin: 0 4px;
+  color: @foreground;
+}
+
+/* submap styling shit */
+#submap {
+  color: @color2;
+}
+
+/* Hardware module Styling */
+#custom-hardware-wrap {
+  color: @color5;
+  font-size: 20px;
+}
+
+#custom-cava {
+  color: @color5;
+  font-size: 20px;
+}
+
+#hardware {
+  font-size: 15px;
+}
+
+#hardware:hover {
+  color: @cursor;
+}
+
+#workspaces {
+  border-radius: 10px;
+}
+
+/* Workspace Number Thingo */
+#workspaces button {
+  color: @color1;
+  padding: 3px;
+}
+
+#workspaces button.empty {
+  
+}
+
+#workspaces button.visible {
+  
+}
+
+#workspaces button.urgent {
+  
+}
+#workspaces button.active {
+  color: @foreground;
+  padding: 15px;
+}
+
+#workspaces button:hover {
+  /* background-color: @comment; */
+}
+
+#custom-power {
+  color: @color10;
+}
+
+#window {
+  color: @color1;
+}
+
+#clock {
+  color: @color1;
+}
+
+#custom-notification {
+  color: @color8;
+}
+
+#wireplumber {
+  color: @color13;
+}
+
+#mpd {
+  color: @color6;
+}
+
+#battery {
+  color: @color6;
+}
+
+#battery.warning {
+  color: @color5;
+  animation: blink 2s infinite alternate;
+}
+
+#battery.critical {
+  color: @background;
+  animation: blink 0.5s infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.25; }
+}
