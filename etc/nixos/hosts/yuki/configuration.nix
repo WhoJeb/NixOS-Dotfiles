@@ -20,6 +20,7 @@
       ./../../modules/fcitx5.nix
       ./../../modules/drawing-tablets.nix
       # ./../../modules/syncthing.nix # Fix error
+      ./../../modules/hyprland.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -28,6 +29,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
   services.twingate.enable = true;
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   # services.flatpak.enable = true;
 
@@ -93,7 +97,6 @@
      obs-studio
      kdePackages.dolphin
      syncthing
-     obsidian
      # freerdp
      qbittorrent
      gnome-multi-writer
@@ -130,6 +133,11 @@
 
      # AI
      # ollama
+
+     # Note Taking
+     qownnotes
+     obsidian
+     # emacs
 
      # Proton
      protonvpn-gui

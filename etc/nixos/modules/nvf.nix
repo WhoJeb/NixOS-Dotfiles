@@ -97,6 +97,20 @@
             action = ":Neotree toggle<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
           }
 
+          # Remap Neorg TOC
+          {
+            mode = "n";
+            key = "<leader>t";
+            action = ":Neorg toc<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Remap Neorg TOC qflist
+          {
+            mode = "n";
+            key = "<leader>q";
+            action = ":Neorg toc qflist<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
           # Better Paste
           {
             mode = "x";
@@ -120,7 +134,7 @@
         ];
 
 
-        ui.noice.enable = true; # Cmdline n stuff (Whether to enable noice.nvim UI modification library)
+        # ui.noice.enable = true; # Cmdline n stuff (Whether to enable noice.nvim UI modification library)
         ui.borders = {
           enable = true;
           # globalStyle = "";
@@ -251,6 +265,64 @@
         cheatsheet.enable = true;
         whichKey.enable = true;
         # Vim keybinds changed in flake.lock
+      };
+
+      vim.notes.neorg = {
+        enable = true;
+        setupOpts = {
+          load."core.defaults".enable = true;
+          load."core.concealer" = {
+            enable = true;
+            config = {
+              icon_preset = "diamond";
+            };
+          };
+
+          load."core.dirman" = {
+            enable = true;
+            config = {
+              workspaces = {
+                notes = "~/Documents/notes";
+                life = "~/Documents/notes/Life";
+              };
+              default_workspace = "notes";
+            };
+          };
+          load."core.summary".enable = true;
+          load."core.completion" = { 
+            enable = true;
+            config = {
+              engine = "nvim-cmp";
+            };
+          };
+          # load."core.keybinds".enable = true;
+          # load."core.promo".enable = true;
+          load."core.ui.calendar".enable = true;
+          load."core.latex.renderer".enable = true;
+        };
+        treesitter = {
+          enable = true;
+        };
+      };
+
+      vim.utility.images.image-nvim = {
+        enable = true;   
+        setupOpts = {
+          backend = "kitty";
+          integrations = {
+            markdown = {
+              enable = true;
+              clearInInsertMode = true;
+              downloadRemoteImages = true;
+            };
+
+            neorg = { 
+              enable = true;
+              clearInInsertMode = true;
+              downloadRemoteImages = true;
+            };
+          };
+        };
       };
     };
   };

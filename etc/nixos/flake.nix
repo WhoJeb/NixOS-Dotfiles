@@ -17,15 +17,22 @@
     # Stylix
     stylix.url = "github:danth/stylix";
 
+    # hyprland
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    
+    # Zen
+    # zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+
     
     # ---- Quickshell ---- #
     quickshell = {
       url = "github:outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
       inputs.quickshell.follows = "quickshell";  # Use same quickshell version
     };
 
@@ -33,7 +40,7 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, nvf, ... }: # stylix,
+  outputs = { self, nixpkgs, unstable, home-manager, nvf, ... }@inputs: # stylix,
     let
       # ---- System Settings ---- #
       lib = nixpkgs.lib;
@@ -91,6 +98,7 @@
             # pass variables through
             inherit userSettings;
             inherit systemSettings;
+            inherit inputs;
         };
       };	
     };
@@ -99,11 +107,14 @@
       userSettings.username = home-manager.lib.homeManagerConfiguration {
       	inherit pkgs;
 
-        modules = [ (./. + "/hosts"+("/"+userSettings.profile)+"/home.nix") ];
+        modules = [ 
+            (./. + "/hosts"+("/"+userSettings.profile)+"/home.nix")
+          ];
           # modules = [ ./home.nix ];
         extraSpecialArgs = {
           inherit userSettings;
           inherit systemSettings;
+          inherit inputs;
         };
       };
     };
