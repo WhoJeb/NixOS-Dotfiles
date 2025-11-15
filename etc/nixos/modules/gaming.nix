@@ -9,7 +9,7 @@
 
   environment.systemPackages = with pkgs; [
      # ---- Gaming ---- #
-     # lutris
+     lutris
      heroic
      xwayland
      xwayland-satellite

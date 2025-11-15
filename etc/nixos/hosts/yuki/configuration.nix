@@ -21,6 +21,7 @@
       ./../../modules/drawing-tablets.nix
       # ./../../modules/syncthing.nix # Fix error
       ./../../modules/hyprland.nix
+      # ./../../modules/hacking.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.

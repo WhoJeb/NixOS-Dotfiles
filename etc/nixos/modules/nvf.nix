@@ -100,14 +100,14 @@
           # Remap Neorg TOC
           {
             mode = "n";
-            key = "<leader>t";
+            key = "<localleader>o";
             action = ":Neorg toc<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
           }
 
           # Remap Neorg TOC qflist
           {
             mode = "n";
-            key = "<leader>q";
+            key = "<localleader>q";
             action = ":Neorg toc qflist<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
           }
 
@@ -288,7 +288,14 @@
               default_workspace = "notes";
             };
           };
-          load."core.summary".enable = true;
+
+          load."core.summary" = { 
+            enable = true;
+            config = {
+              strategy = "by_path";
+            };
+          };
+
           load."core.completion" = { 
             enable = true;
             config = {
