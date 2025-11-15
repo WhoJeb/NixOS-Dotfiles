@@ -89,7 +89,7 @@ in
         "hyprpaper"
         "syncthing"
         # "ollama serve"
-        "bash ~/.config/hypr/randomWallpaper.sh"
+        "randomAnimeWal" # Generated under scripts/randomWal.nix
       ];
 
       env = [
@@ -243,15 +243,15 @@ in
       bind = [
         "$mod, RETURN, exec, $terminal"
         "$mod, X, killactive,"
-        "$mod SHIFT, Q, exec, ~/.config/wofi/powermenu.sh"
+        "$mod SHIFT, Q, exec, powermenu"
         "$mod, V, togglefloating,"
         "$mod, SPACE, exec, $menu"
-        "$mod SHIFT, T, exec, bash ~/.config/hypr/randomWallpaper.sh"
+        "$mod SHIFT, T, exec, randomAnimeWal"
         "$mod, P, pseudo,"
         "$mod, I, togglesplit,"
 
         "SUPER, F, fullscreen"
-        "SUPER, c, exec, bash ~/.config/wofi/keybinds.sh"
+        # "SUPER, c, exec, bash ~/.config/wofi/keybinds.sh"
         "SUPER, E, exec, wofi-emoji"
         
         # Move focus with mainMod + arrow keys
@@ -270,7 +270,7 @@ in
         "$mod, M, submap, move"
 
         ", PRINT, exec, hyprshot -m window"
-        "SHIFT, PRINT, exec, bash ~/.config/hypr/screenshot.sh"
+        "SHIFT, PRINT, exec, hyprScreenshot"
       ]
       ++ (
         # workspaces

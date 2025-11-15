@@ -90,74 +90,81 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     # General
-     floorp
-     mako
-     vlc
-     mpd
-     obs-studio
-     kdePackages.dolphin
-     syncthing
-     # freerdp
-     qbittorrent
-     gnome-multi-writer
-     udisks
-     udiskie
-     dmidecode
-     musikcube
-     ncmpcpp
-     orca
-     onlyoffice-desktopeditors
-     # libreoffice-fresh
-     # cyberduck
-     filezilla
-     alsa-tools
-     xwayland-satellite # IDK if this actually helps but yay its here; ugh fuck bloat, and no its not 5am
-     nautilus # Needed for file browsers in programs running under xwayland; 🥳 I'm so happy this works now!
-     
-     nicotine-plus
-     soundconverter
+    # Scripts
+    (import ./../../scripts/randomWal.nix { inherit pkgs; })
+    (import ./../../scripts/randomAnimeWal.nix { inherit pkgs; })
+    (import ./../../scripts/hyprScreenshot.nix { inherit pkgs; })
+    (import ./../../scripts/wofi/nixmenu.nix { inherit pkgs; })
+    (import ./../../scripts/wofi/powermenu.nix { inherit pkgs; })
 
-     # Programming
-     gcc
-     git
-     neovim
-     python3
-     rustup
-     # rustc
-     # cargo
-     # rustfmt
-     rust-analyzer
-     pkg-config
-     alsa-lib
-     ruby
+    # General
+    floorp
+    mako
+    vlc
+    mpd
+    obs-studio
+    kdePackages.dolphin
+    syncthing
+    # freerdp
+    qbittorrent
+    gnome-multi-writer
+    udisks
+    udiskie
+    dmidecode
+    musikcube
+    ncmpcpp
+    orca
+    onlyoffice-desktopeditors
+    # libreoffice-fresh
+    # cyberduck
+    filezilla
+    alsa-tools
+    xwayland-satellite # IDK if this actually helps but yay its here; ugh fuck bloat, and no its not 5am
+    nautilus # Needed for file browsers in programs running under xwayland; 🥳 I'm so happy this works now!
 
-     # AI
-     # ollama
+    nicotine-plus
+    soundconverter
 
-     # Note Taking
-     qownnotes
-     obsidian
-     # emacs
+    # Programming
+    gcc
+    git
+    neovim
+    python3
+    rustup
+    # rustc
+    # cargo
+    # rustfmt
+    rust-analyzer
+    pkg-config
+    alsa-lib
+    ruby
 
-     # Proton
-     protonvpn-gui
-     proton-pass
+    # AI
+    # ollama
 
-     # Terminal
-     cbonsai
-     cmatrix
-     kitty
-     fzf
-     btop
-     wget
-     fastfetch
-     # alacritty
-     unzip
-     peazip
-     rar
-     zoxide
-     killall
+    # Note Taking
+    qownnotes
+    obsidian
+    # emacs
+
+    # Proton
+    protonvpn-gui
+    proton-pass
+
+    # Terminal
+    cbonsai
+    cmatrix
+    kitty
+    fzf
+    btop
+    wget
+    fastfetch
+    # alacritty
+    unzip
+    peazip
+    rar
+    zoxide
+    killall
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
