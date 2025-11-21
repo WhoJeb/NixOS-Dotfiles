@@ -353,7 +353,7 @@ window-rule {
 }
 
 // for niri wofi menu
-window-rule {
+/-window-rule {
     match title="NixOS"
     // match app-id=r#"^kitty$"#
     open-floating true
