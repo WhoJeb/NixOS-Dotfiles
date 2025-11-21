@@ -1,7 +1,6 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
-# include ~/.cache/wal/colors-kitty.conf
-# include ~/.config/kitty/themes/noctalia.conf
+include ~/.cache/wal/colors-kitty.conf
 
 #: Fonts {{{
 
@@ -2930,9 +2929,3 @@ shell /run/current-system/sw/bin/zsh
 #: }}}
 
 #: }}}
-
-
-# BEGIN_KITTY_THEME
-# Noctalia
-include current-theme.conf
-# END_KITTY_THEME

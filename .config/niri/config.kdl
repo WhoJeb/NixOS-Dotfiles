@@ -283,13 +283,9 @@ spawn-at-startup "mpd"
 spawn-at-startup "fcitx5"
 spawn-at-startup "xwayland"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "noctalia-shell"
-// spawn-sh-at-startup "niri msg action spawn -- waybar"
-
-// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "swaybg -i ~/Pictures/Wallpapers/lucy.jpg -m fill"
-// spawn-sh-at-startup "wal -i ~/Pictures/Wallpapers/thumb-1920-1006091.png"
-spawn-sh-at-startup "~/.config/niri/randomWal.sh"
+spawn-sh-at-startup "noctalia-shell"
+// spawn-at-startup "waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css & disown"
+// spawn-sh-at-startup "randomAzlaarWal"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
@@ -431,10 +427,17 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: Kitty" { spawn "kitty"; }
-    Mod+Space hotkey-overlay-title="Run an Application: Wofi" { spawn-sh "wofi --show=drun"; }
+    // Mod+Space hotkey-overlay-title="Run an Application: Wofi" { spawn-sh "wofi --show=drun"; }
     Mod+E hotkey-overlay-title="Emoji Picker: Wofi" { spawn-sh "wofi-emoji"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: Hyprlock" { spawn "hyprlock"; }
-    Super+Shift+T hotkey-overlay-title="Randomize Theme: swaybg & pywal" { spawn-sh "~/.config/niri/randomWal.sh"; }
+    // Super+Shift+T hotkey-overlay-title="Randomize Theme: swaybg & pywal" { spawn-sh "randomAzlaarWal"; }
+
+    // Noctalia Shell
+    Mod+Space { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+    Super+M hotkey-overlay-title="Control Center" { spawn-sh "noctalia-shell ipc call controlCenter toggle"; }
+    Super+Shift+Q hotkey-overlay-title="Session Menu" { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
+    Super+Shift+T hotkey-overlay-title="Random Theme" { spawn-sh "noctalia-shell ipc call wallpaper random"; }
+    Super+Shift+C hotkey-overlay-title="Calendar" { spawn-sh "noctalia-shell ipc call calendar toggle"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -659,7 +662,7 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     // Mod+Shift+Q { quit; }
     // Ctrl+Alt+Delete { quit; }
-    Mod+Shift+Q { spawn-sh "~/.config/wofi/powermenu.sh"; }
+    // Mod+Shift+Q { spawn-sh "~/.config/wofi/powermenu.sh"; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
