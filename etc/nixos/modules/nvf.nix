@@ -271,6 +271,7 @@
         enable = true;
         setupOpts = {
           load."core.defaults".enable = true;
+          load."core.tangle".enable = true;
           load."core.concealer" = {
             enable = true;
             config = {
@@ -306,6 +307,7 @@
           # load."core.promo".enable = true;
           load."core.ui.calendar".enable = true;
           load."core.latex.renderer".enable = true;
+          load."core.integrations.image".enable = true;
         };
         treesitter = {
           enable = true;
@@ -327,6 +329,10 @@
               enable = true;
               clearInInsertMode = true;
               downloadRemoteImages = true;
+              filetypes = [
+                "neorg"
+                "norg"
+              ];
             };
           };
         };

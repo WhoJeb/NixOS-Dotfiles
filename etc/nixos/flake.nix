@@ -11,11 +11,27 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mangowc = {
+      url = "github:DreamMaoMao/mangowc";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
     # NVF (NixVim Flake)
     nvf.url = "github:notashelf/nvf";
 
     # Stylix
     stylix.url = "github:danth/stylix";
+
+    # Quickshell
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "unstable";
+    };
 
     # hyprland
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -23,24 +39,21 @@
     # Zen
     # zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
-
-    
-    # ---- Quickshell ---- #
-    quickshell = {
-      url = "github:outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "unstable";
-    };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "unstable";
-      inputs.quickshell.follows = "quickshell";  # Use same quickshell version
-    };
-
     # ---- Nix-Alien ---- #
     nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, nvf, ... }@inputs: # stylix,
+  outputs = { 
+    self, 
+    nixpkgs, 
+    unstable, 
+    home-manager, 
+    nvf, 
+    mangowc,
+    quickshell,
+    noctalia,
+    ... 
+    }@inputs: # stylix,
     let
       # ---- System Settings ---- #
       lib = nixpkgs.lib;
@@ -49,7 +62,7 @@
       unstablePkgs = import unstable { inherit system; };
 
       systemSettings = rec {
-        hostname = "yuki"; # Hostname
+        hostname = "sundance"; # Hostname
         profile = hostname; # Select a profile from profiles directory
         timezone = "Australia/Melbourne"; # Select timezone
         locale = "en_GB.UTF-8"; # Select locale
@@ -80,9 +93,11 @@
         modules = [
           (./. + "/hosts"+("/"+systemSettings.profile)+"/configuration.nix")
             # (./. + "/hosts"+("/"+systemSettings.profile)+"/hardware-configuration.nix")
-            # (./. + "/modules"+"/noctalia.nix")
 
 	        nvf.nixosModules.default
+
+          mangowc.nixosModules.mango
+
             # stylix.nixosModules.stylix
 
           # Unstable Nixpkgs
@@ -90,6 +105,8 @@
             environment.systemPackages = with pkgs; [
               unstablePkgs.blanket
               unstablePkgs.foliate
+              quickshell.packages.${system}.default
+              noctalia.packages.${system}.default
             ];
           })
 	      ];
@@ -100,7 +117,7 @@
             inherit systemSettings;
             inherit inputs;
         };
-      };	
+      };
     };
 
     homeConfigurations = {
@@ -109,14 +126,18 @@
 
         modules = [ 
             (./. + "/hosts"+("/"+userSettings.profile)+"/home.nix")
-          ];
-          # modules = [ ./home.nix ];
+            # mangowc.nixosModules.mango
+        ];
+        
         extraSpecialArgs = {
           inherit userSettings;
           inherit systemSettings;
           inherit inputs;
         };
+
+
+          # programs.mango.enable = true;
       };
-    };
-  };  
+    }; 
+  };
 }

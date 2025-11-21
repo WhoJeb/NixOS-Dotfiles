@@ -1,17 +1,19 @@
-{ pkgs, systemSettings, lib, config, home-manager, ... }:
+{ pkgs, inputs, systemSettings, lib, config, home-manager, ... }:
 {
   programs.niri.enable = true;
 
+  # Bar in flake
+
   environment.systemPackages = with pkgs; [
-     niri
-     wofi
-     wofi-emoji
-     pywal
-     waybar
-     cava
-     hyprlock
-     # hyprpaper
-     brightnessctl
+    niri
+    wofi
+    wofi-emoji
+    # pywal
+    # waybar
+    # cava
+    # hyprlock
+    # hyprpaper
+    brightnessctl
   ];
 
   # xdg.configFile."niri/config.kdl".text = ''

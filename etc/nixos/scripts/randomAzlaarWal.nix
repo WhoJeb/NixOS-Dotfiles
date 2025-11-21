@@ -1,8 +1,8 @@
 { pkgs }:
 
-pkgs.writeShellScriptBin "randomAnimeWal" ''
+pkgs.writeShellScriptBin "randomAzlaarWal" ''
 # Path to your wallpaper directory
-WALLPAPER_DIR="$HOME/Pictures/Wallpapers/Anime" # Change this to your wallpaper folder
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers/Azlaar/Destop/" # Change this to your wallpaper folder
 
 # CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 
