@@ -23,6 +23,7 @@
       # ./../../modules/hyprland.nix
       # ./../../modules/hacking.nix
       ./../../modules/mango.nix
+      ./../../modules/programming.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -31,6 +32,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
   services.twingate.enable = true;
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
@@ -101,7 +105,7 @@
     (import ./../../scripts/randomAzlaarWal.nix { inherit pkgs; })
 
     # General
-    floorp
+    floorp-bin
     mako
     vlc
     mpd
@@ -123,6 +127,9 @@
     # cyberduck
     filezilla
     alsa-tools
+    alsa-lib
+    foliate
+    blanket
     xwayland-satellite # IDK if this actually helps but yay its here; ugh fuck bloat, and no its not 5am
     nautilus # Needed for file browsers in programs running under xwayland; 🥳 I'm so happy this works now!
 
@@ -130,20 +137,6 @@
     soundconverter
 
     tor-browser
-
-    # Programming
-    gcc
-    git
-    neovim
-    python3
-    rustup
-    # rustc
-    # cargo
-    # rustfmt
-    rust-analyzer
-    pkg-config
-    alsa-lib
-    ruby
 
     # AI
     # ollama
@@ -172,6 +165,7 @@
     rar
     zoxide
     killall
+    exiftool
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -179,5 +173,5 @@
   ];
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }
