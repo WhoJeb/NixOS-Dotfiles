@@ -15,7 +15,7 @@
      xwayland-satellite
      wine
      mangohud
-     protonup
+     protonup-ng
      cage
 
      # ---- Emulators ---- #
@@ -24,7 +24,7 @@
      melonDS # Nintendo DS
      mgba # Game Boy Advance
      dolphin-emu # GameCube and the Wii
-     ryujinx # Nintendo Switch
+     ryubing # Nintendo Switch
      retroarch-full # PS1
      pcsx2 # PS2
      rpcs3 # PS3

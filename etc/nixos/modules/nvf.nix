@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   programs.nvf = {
@@ -11,18 +11,31 @@
         options.shiftwidth = 2;
         options.autoindent = true;
 
+        diagnostics = {
+          enable = true;
+          config = {
+            virtual_lines = true;
+            signs.text = lib.generators.mkLuaInline ''
+            {
+              [vim.diagnostic.severity.ERROR] = " ",
+              [vim.diagnostic.severity.WARN] = " ",
+            }
+            '';
+          };
+        };
+
         # Startify Dashboard
         dashboard.startify = { 
-        enable = true;
+          enable = true;
         #  bookmarks = {
         #     c = "~/.vimrc";
         #  };
 
           lists = [
-            {
-              header = [ "MRU" ];
-              type = "files";
-            }
+            # {
+            #   header = [ "MRU" ];
+            #   type = "files";
+            # }
             {
               header = [ "MRU Current Directory" ];
               type = "dir";
@@ -45,9 +58,6 @@
         # Undotree
         utility.undotree.enable = true;
 
-        # All requierments to use obisidan in neovim feature complete
-        # notes.obsidian.enable = true; 
-        
         # Fancy status line
         statusline.lualine.enable = true;
 
@@ -62,7 +72,7 @@
         
         # Leetcode
         utility.leetcode-nvim.enable = true;
-        utility.leetcode-nvim.setupOpts.lang = "python3"; # Availible opts [“cpp”, “java”, “python”, “python3”, “c”, “csharp”, “javascript”, “typescript”, “php”, “swift”, “kotlin”, “dart”, “golang”, “ruby”, “scala”, “rust”, “racket”, “erlang”, “elixir”, “bash”]
+        utility.leetcode-nvim.setupOpts.lang = "cpp"; # Availible opts [“cpp”, “java”, “python”, “python3”, “c”, “csharp”, “javascript”, “typescript”, “php”, “swift”, “kotlin”, “dart”, “golang”, “ruby”, “scala”, “rust”, “racket”, “erlang”, “elixir”, “bash”]
 
         # Neotree
         filetree.neo-tree.setupOpts = {
@@ -90,6 +100,69 @@
             # };
           }
 
+          # Map open new tab
+          {
+            mode = "n";
+            key = "<leader>to";
+            action = ":tabnew<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map close tab
+          {
+            mode = "n";
+            key = "<leader>tc";
+            action = ":tabclose<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map close all except current tab
+          {
+            mode = "n";
+            key = "<leader>tC";
+            action = ":.tabonly<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map go to next tab
+          {
+            mode = "n";
+            key = "<leader>tn";
+            action = ":+tabnext<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map go to prev tab
+          {
+            mode = "n";
+            key = "<leader>tb";
+            action = ":-tabnext<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map go to first tab
+          {
+            mode = "n";
+            key = "<leader>tf";
+            action = ":tabfirst<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map go to last tab
+          {
+            mode = "n";
+            key = "<leader>tl";
+            action = ":tablast<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map move tab right
+          {
+            mode = "n";
+            key = "<leader>tN";
+            action = ":+tabmove<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
+          # Map move tab left
+          {
+            mode = "n";
+            key = "<leader>tB";
+            action = ":-tabmove<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          }
+
           # Remap Neo-Tree
           {
             mode = "n";
@@ -112,11 +185,11 @@
           }
 
           # Better Paste
-          {
-            mode = "x";
-            key = "<leader>p";
-            action = "'\'_dP"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
-          }
+          # {
+          #   mode = "x";
+          #   key = "<leader>p";
+          #   action = "'\'_dP"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          # }
 
           # Remap Undo-Tree
           {
@@ -125,12 +198,19 @@
             action = ":UndotreeToggle<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
           }
 
-          # Man Page
+          # Go To Definition
           {
             mode = "n";
-            key = "<C-h>";
-            action = ":WhichKey<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+            key = "gd";
+            action = ":tab split | lua vim.lsp.buf.definition()<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
           }
+
+          # Man Page
+          # {
+          #   mode = "n";
+          #   key = "<C-h>";
+          #   action = ":WhichKey<CR>"; # the <CR> tag stands for 'Carriage Return' and is what runs the command that was written out
+          # }
         ];
 
 
@@ -143,6 +223,8 @@
           plugins.which-key.enable = true;
           plugins.lsp-signature.enable = true;
         };
+
+        snippets.luasnip.enable = true;
       
         theme = {
           enable = true;
@@ -153,6 +235,11 @@
 
         statusline.lualine.theme = "pywal";
       };
+
+      vim.terminal.toggleterm = {
+        enable = true;
+        lazygit.enable = true;
+      };
         
       vim.lsp = {
         enable = true;
@@ -160,8 +247,8 @@
         lspkind.enable = true; # Icons in lsp menu
         null-ls.enable = true;
         inlayHints.enable = true;
-        lspSignature.enable = true; # Borders
-        lightbulb.enable = false;
+        lspSignature.enable = true;
+        formatOnSave = false;
 
         nvim-docs-view = {
           enable = true; # Whether to enable nvim-docs-view, for displaying lsp hover documentation in a side panel
@@ -177,7 +264,7 @@
         };
 
         trouble = {
-          enable = true; # Whether to enable trouble diagnostics viewer
+          enable = false; # Whether to enable trouble diagnostics viewer
           mappings = {
             workspaceDiagnostics = "<leader>lwd"; # Workspace diagnostics [trouble]
             documentDiagnostics = "<leader>ld"; # Document diagnostics [trouble]
@@ -212,6 +299,7 @@
       
       vim.treesitter.textobjects.enable = true; # text object related vim motions
       vim.languages = {
+        enableDAP = true;
 	      enableTreesitter = true;
 
 	      nix.enable = true;
@@ -234,7 +322,10 @@
         markdown.lsp.enable = true;
 
 	      clang.enable = true;
+        clang.cHeader = true;
+        clang.dap.enable = true;
         clang.lsp.enable = true;
+        clang.treesitter.enable = true;
 
         lua.enable = true;
         lua.lsp.enable = true;
@@ -254,11 +345,20 @@
         ruby.enable = true;
         ruby.lsp.enable = true;
 
-        # java.enable = true;
+        java.enable = true;
+        java.lsp.enable = true;
+
         # php.enable = true;
         # r.enable = true;
         # sql.enable = true;
-        # ts.enable = true;
+
+        ts.enable = true;
+        ts.lsp.enable = true;
+      };
+
+      vim.debugger.nvim-dap = {
+        enable = true;
+        ui.enable = true;
       };
 
       vim.binds = {
