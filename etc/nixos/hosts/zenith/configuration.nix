@@ -105,6 +105,8 @@
      filezilla
      alsa-tools
      neovim
+     blanket
+     foliate
 
      # ---- Programming ---- #
      gcc
@@ -117,6 +119,7 @@
      rust-analyzer
      pkg-config
      alsa-lib
+     godot
 
      # ---- AI ---- #
      # ollama
@@ -141,5 +144,5 @@
   ];
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }

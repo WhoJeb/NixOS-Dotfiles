@@ -24,6 +24,7 @@
       # ./../../modules/hacking.nix
       ./../../modules/mango.nix
       ./../../modules/programming.nix
+      ./../../modules/video-production.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -109,8 +110,6 @@
     mako
     vlc
     mpd
-    anki
-    obs-studio
     kdePackages.dolphin
     syncthing
     # freerdp
@@ -121,6 +120,7 @@
     dmidecode
     musikcube
     ncmpcpp
+    ffmpeg
     orca
     onlyoffice-desktopeditors
     # libreoffice-fresh
@@ -137,6 +137,13 @@
     soundconverter
 
     tor-browser
+
+    # Anki
+    anki
+
+    # Image Manipulation
+    gimp2
+    krita
 
     # AI
     # ollama

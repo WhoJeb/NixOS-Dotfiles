@@ -8,6 +8,10 @@
     pkg-config
     neovim
     git
+
+    # ---- Man Pages ---- #
+    man-pages
+    man-pages-posix
     
     # ---- Java ---- #
     # jetbrains.idea-community-bin
@@ -22,9 +26,13 @@
     # python313Packages.pygame
 
     # ---- C & C++ ---- #
+    # Compilers
     gcc
-    # libGLU
-    # sdl3
+    clang
+
+    # Build System
+    cmake
+    pkg-config
     
     # ---- Ruby ---- #
     ruby

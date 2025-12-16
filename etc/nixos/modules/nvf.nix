@@ -16,20 +16,20 @@
           config = {
             virtual_lines = true;
             signs.text = lib.generators.mkLuaInline ''
-            {
-              [vim.diagnostic.severity.ERROR] = " ",
-              [vim.diagnostic.severity.WARN] = " ",
-            }
+              {
+                [vim.diagnostic.severity.ERROR] = " ",
+                [vim.diagnostic.severity.WARN] = " ",
+              }
             '';
           };
         };
 
         # Startify Dashboard
-        dashboard.startify = { 
+        dashboard.startify = {
           enable = true;
-        #  bookmarks = {
-        #     c = "~/.vimrc";
-        #  };
+          #  bookmarks = {
+          #     c = "~/.vimrc";
+          #  };
 
           lists = [
             # {
@@ -54,7 +54,7 @@
             }
           ];
         };
-        
+
         # Undotree
         utility.undotree.enable = true;
 
@@ -69,7 +69,7 @@
 
         # File Browser
         filetree.neo-tree.enable = true;
-        
+
         # Leetcode
         utility.leetcode-nvim.enable = true;
         utility.leetcode-nvim.setupOpts.lang = "cpp"; # Availible opts [“cpp”, “java”, “python”, “python3”, “c”, “csharp”, “javascript”, “typescript”, “php”, “swift”, “kotlin”, “dart”, “golang”, “ruby”, “scala”, “rust”, “racket”, “erlang”, “elixir”, “bash”]
@@ -213,7 +213,6 @@
           # }
         ];
 
-
         # ui.noice.enable = true; # Cmdline n stuff (Whether to enable noice.nvim UI modification library)
         ui.borders = {
           enable = true;
@@ -225,7 +224,7 @@
         };
 
         snippets.luasnip.enable = true;
-      
+
         theme = {
           enable = true;
           name = "catppuccin";
@@ -240,7 +239,7 @@
         enable = true;
         lazygit.enable = true;
       };
-        
+
       vim.lsp = {
         enable = true;
         lspsaga.enable = true; # Fancy lsp menu
@@ -259,7 +258,7 @@
         };
 
         otter-nvim = {
-          enable = true; # Whether to enable lsp features and a code completion source for code embedded in other documents [otter-nvim] 
+          enable = true; # Whether to enable lsp features and a code completion source for code embedded in other documents [otter-nvim]
           mappings.toggle = "<leader>lo";
         };
 
@@ -286,7 +285,7 @@
 
           listReferences = "<leader>lgr";
           listImplementations = "<leader>lgi";
-          
+
           listWorkspaceFolders = "<leader>lwl";
           addWorkspaceFolder = "<leader>lwa";
           removeWorkspaceFolder = "<leader>lwr";
@@ -296,16 +295,16 @@
           openDiagnosticFloat = "<leader>le"; # explains current error or warning
         };
       };
-      
+
       vim.treesitter.textobjects.enable = true; # text object related vim motions
       vim.languages = {
         enableDAP = true;
-	      enableTreesitter = true;
+        enableTreesitter = true;
 
-	      nix.enable = true;
+        nix.enable = true;
         nix.lsp.enable = true;
 
-	      rust.enable = true;
+        rust.enable = true;
 
         python.enable = true;
         python.lsp.enable = true;
@@ -321,9 +320,10 @@
         markdown.enable = true;
         markdown.lsp.enable = true;
 
-	      clang.enable = true;
+        clang.enable = true;
         clang.cHeader = true;
         clang.dap.enable = true;
+        clang.lsp.server = "ccls";
         clang.lsp.enable = true;
         clang.treesitter.enable = true;
 
@@ -384,20 +384,20 @@
             config = {
               workspaces = {
                 notes = "~/Documents/notes";
-                life = "~/Documents/notes/Life";
+                # life = "~/Documents/notes/Life";
               };
               default_workspace = "notes";
             };
           };
 
-          load."core.summary" = { 
+          load."core.summary" = {
             enable = true;
             config = {
               strategy = "by_path";
             };
           };
 
-          load."core.completion" = { 
+          load."core.completion" = {
             enable = true;
             config = {
               engine = "nvim-cmp";
@@ -415,7 +415,7 @@
       };
 
       vim.utility.images.image-nvim = {
-        enable = true;   
+        enable = true;
         setupOpts = {
           backend = "kitty";
           integrations = {
@@ -425,7 +425,7 @@
               downloadRemoteImages = true;
             };
 
-            neorg = { 
+            neorg = {
               enable = true;
               clearInInsertMode = true;
               downloadRemoteImages = true;
