@@ -155,7 +155,7 @@ layout {
         proportion 1.0
     }
 
-    default-column-width { proportion 0.8; }
+    default-column-width { proportion 1.0; }
     // By default focus ring and border are rendered as a solid background rectangle
     // behind windows. That is, they will show up through semitransparent windows.
     // This is because windows using client-side decorations can have an arbitrary shape.
@@ -392,22 +392,31 @@ window-rule {
 window-rule {
   match app-id=r#"^org.qbittorrent.qBittorrent$"#
   open-on-workspace "3"
+  open-maximized true
 }
 
 window-rule {
   match app-id=r#"^org.nicotine_plus.Nicotine$"#
   open-on-workspace "3"
+  open-maximized true
 }
 
 window-rule {
   match app-id=r#"^filezilla$"#
   open-on-workspace "3"
+  open-maximized true
 }
 
 window-rule {
   match app-id=r#"^steam$"#
   open-on-workspace "3"
   open-maximized true
+}
+
+window-rule {
+  match app-id=r#"^.protonvpn-app-wrapped$"#
+  open-on-workspace "4"
+  open-maximized false
 }
 
 
