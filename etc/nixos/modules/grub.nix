@@ -6,6 +6,6 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.loader.timeout = 5;
+  boot.loader.timeout = 7;
   boot.loader.grub.timeoutStyle = "menu";
 }

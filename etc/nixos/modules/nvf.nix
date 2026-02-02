@@ -1,5 +1,8 @@
 { lib, ... }:
 
+# To Do
+# - Fcitx Support
+
 {
   programs.nvf = {
     enable = true;
@@ -10,6 +13,8 @@
         options.tabstop = 2;
         options.shiftwidth = 2;
         options.autoindent = true;
+
+        utility.icon-picker.enable = true;
 
         diagnostics = {
           enable = true;
@@ -323,7 +328,7 @@
         clang.enable = true;
         clang.cHeader = true;
         clang.dap.enable = true;
-        clang.lsp.server = "ccls";
+        clang.lsp.servers = ["ccls"];
         clang.lsp.enable = true;
         clang.treesitter.enable = true;
 
@@ -377,6 +382,7 @@
             config = {
               icon_preset = "diamond";
             };
+            init_open_folds = "always";
           };
 
           load."core.dirman" = {
@@ -408,6 +414,13 @@
           load."core.ui.calendar".enable = true;
           load."core.latex.renderer".enable = true;
           load."core.integrations.image".enable = true;
+          load."core.integrations.treesitter" = {
+            enable = true;
+            config = {
+              configure_parsers = true;
+              install_parsers = true;
+            };
+          };
         };
         treesitter = {
           enable = true;

@@ -24,7 +24,7 @@
       # ./../../modules/hacking.nix
       ./../../modules/mango.nix
       ./../../modules/programming.nix
-      ./../../modules/video-production.nix
+      # ./../../modules/video-production.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -39,6 +39,9 @@
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
+  
+  # Astriks for passwords
+  security.sudo.extraConfig = "Defaults pwfeedback";
 
   # services.flatpak.enable = true;
 
@@ -73,14 +76,14 @@
     enable = true;
     autoRepeatDelay = 200;
     autoRepeatInterval = 35;
+    
+    xkb = {
+      layout = "au,br,jp";
+      variant = ",abnt2,";
+      # options = "grp:alt_shift_toggle";
+    };
   };
   services.displayManager.ly.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "au,kr";
-    variant = ",";
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
@@ -112,16 +115,18 @@
     mpd
     kdePackages.dolphin
     syncthing
+    # bottles
     # freerdp
     qbittorrent
     gnome-multi-writer
     udisks
     udiskie
+    fanctl
     dmidecode
     musikcube
-    ncmpcpp
+    # ncmpcpp
     ffmpeg
-    orca
+    # orca # Screen Reader (Accesablility)
     onlyoffice-desktopeditors
     # libreoffice-fresh
     # cyberduck
@@ -149,30 +154,34 @@
     # ollama
 
     # Note Taking
-    qownnotes
-    obsidian
-    # emacs
+    # obsidian
 
     # Proton
     protonvpn-gui
     proton-pass
+    protonmail-desktop
+    proton-authenticator
 
     # Terminal
+    kitty
+    # alacritty
+    fzf
+    wget
+    btop
     yazi
     cbonsai
     cmatrix
-    kitty
-    fzf
-    btop
-    wget
     fastfetch
-    # alacritty
     unzip
     peazip
     rar
     zoxide
     killall
     exiftool
+    gdu # Disk/storage Analysis
+
+    # Trial (Delete if don't like or not used)
+    # mandelbulber
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

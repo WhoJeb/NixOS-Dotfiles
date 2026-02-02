@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
 
+  documentation.man.man-db.enable = true;
+
   environment.systemPackages = with pkgs; [
 
     # ---- General ---- #

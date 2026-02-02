@@ -65,7 +65,9 @@
         hostname = "sundance"; # Hostname
         profile = hostname; # Select a profile from profiles directory
         timezone = "Australia/Melbourne"; # Select timezone
-        locale = "en_GB.UTF-8"; # Select locale
+        locale = "en_AU.UTF-8"; # Select locale
+        # locale = "pt_BR.UTF-8"; # Select locale
+        # locale = "ja_JP.UTF-8"; # Select locale
       };
 
       # ---- User Settings ---- #

@@ -9,6 +9,6 @@
   # Auto Garbage Collecting
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
-  nix.gc.options = "--delete-older-than 10d";
+  nix.gc.options = "--delete-older-than 2d";
   nix.settings.auto-optimise-store = true;
 }
