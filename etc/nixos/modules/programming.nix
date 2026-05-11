@@ -9,6 +9,7 @@
     lazygit
     pkg-config
     neovim
+    vscodium
     git
 
     # ---- Man Pages ---- #
@@ -40,13 +41,13 @@
     ruby
 
     # ---- Rust ---- #
-    # rustup
+    rustup
     # rustc
     # cargo
     # rustfmt
     # rust-analyzer
 
     # ---- Zig ---- #
-    # zig
+    zig
   ];
 }

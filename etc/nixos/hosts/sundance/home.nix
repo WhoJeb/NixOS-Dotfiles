@@ -67,6 +67,24 @@ in
     enable = true;
     shellAliases = myAliases;
   };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Dracula"; # Or "Orchis-dark", etc.
+      package = pkgs.dracula-theme;
+    };
+
+    iconTheme = {
+      name = "Cosmic-Icons";
+      package = pkgs.cosmic-icons;
+    };
+  };
   
   wayland.windowManager.hyprland = {
     enable = true;
@@ -287,6 +305,17 @@ in
       ++ resizeBinds
       ++ moveBinds;
     };
+  };
+
+  xsession.windowManager.xfce = {
+    enable = true;
+    extraConfig = '' 
+      xfce4-panel --add=actions
+      xfdesktop --set-wallpaper="~/Pictures/Wallpapers/Destiny/2kfWglo.jpeg"
+      xfconf-query -c xsettings -p /Net/ThemeName -s "Dracula"
+      xfconf-query -c xfwm4 -p /general/theme -s "Dracula"
+      xfconf-query -c xsettings -p /Net/IconThemeName -s "Cosmic-Icons"
+    '';
   };
 
   # put programs you want to be managed by the user/user only apps

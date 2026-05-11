@@ -5,13 +5,13 @@
   # Bar in flake
 
   environment.systemPackages = with pkgs; [
-    niri
+    # niri
     wofi
     wofi-emoji
-    # pywal
-    # waybar
+    pywal
+    waybar
     # cava
-    # hyprlock
+    hyprlock
     # hyprpaper
     brightnessctl
   ];

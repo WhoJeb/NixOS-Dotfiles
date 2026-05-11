@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 # To Do
 # - Fcitx Support
@@ -66,8 +66,11 @@
         # Fancy status line
         statusline.lualine.enable = true;
 
-        # Lsp Stuff
+        # Fuzzy Finder
         telescope.enable = true;
+
+
+        syntaxHighlighting = true;
 
         # Autocomplete
         autocomplete.nvim-cmp.enable = true;
@@ -301,7 +304,11 @@
         };
       };
 
+      vim.treesitter.enable = true;
       vim.treesitter.textobjects.enable = true; # text object related vim motions
+      vim.treesitter.fold = false;
+      vim.treesitter.grammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+  
       vim.languages = {
         enableDAP = true;
         enableTreesitter = true;
@@ -330,7 +337,7 @@
         clang.dap.enable = true;
         clang.lsp.servers = ["ccls"];
         clang.lsp.enable = true;
-        clang.treesitter.enable = true;
+        # clang.treesitter.enable = true;
 
         lua.enable = true;
         lua.lsp.enable = true;
@@ -338,14 +345,17 @@
         yaml.enable = true;
         yaml.lsp.enable = true;
 
-        csharp.enable = true;
-        csharp.lsp.enable = true;
+        json.enable = true;
+        json.format.enable = true;
+
+        # csharp.enable = true;
+        # csharp.lsp.enable = true;
 
         go.enable = true;
         go.lsp.enable = true;
 
-        zig.enable = true;
-        zig.lsp.enable = true;
+        # zig.enable = true;
+        # zig.lsp.enable = true;
 
         ruby.enable = true;
         ruby.lsp.enable = true;
@@ -357,8 +367,8 @@
         # r.enable = true;
         # sql.enable = true;
 
-        ts.enable = true;
-        ts.lsp.enable = true;
+        typescript.enable = true;
+        typescript.lsp.enable = true;
       };
 
       vim.debugger.nvim-dap = {
@@ -373,7 +383,7 @@
       };
 
       vim.notes.neorg = {
-        enable = true;
+        enable = false;
         setupOpts = {
           load."core.defaults".enable = true;
           load."core.tangle".enable = true;
@@ -422,6 +432,7 @@
             };
           };
         };
+
         treesitter = {
           enable = true;
         };
@@ -452,4 +463,5 @@
       };
     };
   };
+
 }

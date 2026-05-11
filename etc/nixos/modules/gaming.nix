@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   programs.steam = {
     enable = true;
-    extraCompatPackages = with pkgs; [
+    extraCompatPackages = with pkgs-unstable; [
       proton-ge-bin
     ];
   };
@@ -21,6 +21,7 @@
     protonup-ng
     protonup-qt
     cage # Try if games don't support x11
+    prismlauncher # Minecraft Launcher
 
     # ---- Emulators ---- #
     cemu # Wii U
@@ -29,7 +30,7 @@
     mgba # Game Boy Advance
     dolphin-emu # GameCube and the Wii
     ryubing # Nintendo Switch
-    retroarch-full # PS1
+    # retroarch-full # PS1
     pcsx2 # PS2
     rpcs3 # PS3
 

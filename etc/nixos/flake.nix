@@ -3,7 +3,8 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "nixpkgs/nixos-25.11";
-    unstable.url = "nixpkgs/nixos-unstable";
+    nvf-nixpkgs.url = "github:NixOS/nixpkgs/cad22e7d996aea55ecab064e84834289143e44a0";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     # Home Manager
     home-manager = {
@@ -13,44 +14,73 @@
 
     mangowc = {
       url = "github:DreamMaoMao/mangowc";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # NVF (NixVim Flake)
-    nvf.url = "github:notashelf/nvf";
+    nvf = { 
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # Stylix
     stylix.url = "github:danth/stylix";
 
     # Quickshell
     quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "unstable";
+      # url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    # caelestia-shell = {
+    #  url = "github:caelestia-dots/shell";
+    #  inputs.nixpkgs.follows = "unstable";
+    # };
+
+    # caelestia-cli = {
+    #   url = "github:caelestia-dots/cli";
+    #   inputs.nixpkgs.follows = "unstable";
+    # };
 
     # hyprland
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     
     # Zen
-    # zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        # IMPORTANT: To ensure compatibility with the latest Firefox version, use nixpkgs-unstable.
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
+    };
 
     # ---- Nix-Alien ---- #
-    nix-alien.url = "github:thiagokokada/nix-alien";
+    nix-alien = { 
+      url = "github:thiagokokada/nix-alien";
+      inputs = {
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
+    };
   };
 
   outputs = { 
     self, 
     nixpkgs, 
-    unstable, 
+    nixpkgs-unstable, 
     home-manager, 
     nvf, 
+    zen-browser,
+    nix-alien,
     mangowc,
     quickshell,
+    # caelestia-shell,
+    # caelestia-cli,
     noctalia,
     ... 
     }@inputs: # stylix,
@@ -59,7 +89,7 @@
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      unstablePkgs = import unstable { inherit system; };
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
 
       systemSettings = rec {
         hostname = "sundance"; # Hostname
@@ -102,12 +132,14 @@
 
             # stylix.nixosModules.stylix
 
-          # Unstable Nixpkgs
           ({
             environment.systemPackages = with pkgs; [
-                # unstablePkgs.foliate
               quickshell.packages.${system}.default
               noctalia.packages.${system}.default
+              # caelestia-shell.packages.${system}.default
+              # caelestia-cli.packages.${system}.default
+              zen-browser.packages.${system}.default
+              nix-alien.packages.${system}.default
             ];
           })
 	      ];
@@ -117,6 +149,7 @@
             inherit userSettings;
             inherit systemSettings;
             inherit inputs;
+            inherit pkgs-unstable;
         };
       };
     };
@@ -134,10 +167,11 @@
           inherit userSettings;
           inherit systemSettings;
           inherit inputs;
+          inherit pkgs-unstable;
         };
 
 
-          # programs.mango.enable = true;
+        # programs.mango.enable = true;
       };
     }; 
   };

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, userSettings, systemSettings, ... }:
+{ config, pkgs, pkgs-unstable, lib, userSettings, systemSettings, ... }:
 
 {
   imports =
@@ -21,8 +21,8 @@
       ./../../modules/drawing-tablets.nix
       # ./../../modules/syncthing.nix # Fix error
       # ./../../modules/hyprland.nix
-      # ./../../modules/hacking.nix
-      ./../../modules/mango.nix
+      ./../../modules/hacking.nix
+      # ./../../modules/mango.nix
       ./../../modules/programming.nix
       # ./../../modules/video-production.nix
     ];
@@ -32,11 +32,14 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  services.twingate.enable = true;
+  services.tailscale.enable = true;
 
+  # Bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  # Temp and Power
+  programs.coolercontrol.enable = false;
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
   
@@ -71,6 +74,21 @@
   programs.xwayland.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  # Filebroswer Fix
+  xdg.portal = { 
+    enable = true;
+    # wlr.enable = true; # Disable for niri
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-gtk 
+      pkgs.xdg-desktop-portal-gnome 
+    ];
+  };
+  
+  # Can remove when niri add proper xdg portal support
+  lib.mkForce.environment.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "GNOME";
+  };
+
   # Enable the X11 windowing system
   services.xserver = {
     enable = true;
@@ -78,11 +96,17 @@
     autoRepeatInterval = 35;
     
     xkb = {
-      layout = "au,br,jp";
-      variant = ",abnt2,";
+      layout = "au,jp";
+      variant = ",";
       # options = "grp:alt_shift_toggle";
     };
+
   };
+
+  services.libinput.touchpad = {
+    naturalScrolling = true;
+  };
+  
   services.displayManager.ly.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -96,52 +120,40 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  services.open-webui.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # Scripts
-    (import ./../../scripts/randomWal.nix { inherit pkgs; })
-    (import ./../../scripts/randomAnimeWal.nix { inherit pkgs; })
-    (import ./../../scripts/hyprScreenshot.nix { inherit pkgs; })
-    (import ./../../scripts/wofi/nixmenu.nix { inherit pkgs; })
-    (import ./../../scripts/wofi/powermenu.nix { inherit pkgs; })
-    (import ./../../scripts/randomMashedWal.nix { inherit pkgs; })
-    (import ./../../scripts/randomAzlaarWal.nix { inherit pkgs; })
-
+  environment.systemPackages = (with pkgs; [
     # General
     floorp-bin
     mako
     vlc
     mpd
-    kdePackages.dolphin
+    # kdePackages.dolphin
     syncthing
-    # bottles
-    # freerdp
+    bottles
     qbittorrent
     gnome-multi-writer
     udisks
     udiskie
-    fanctl
     dmidecode
     musikcube
-    # ncmpcpp
     ffmpeg
-    # orca # Screen Reader (Accesablility)
     onlyoffice-desktopeditors
-    # libreoffice-fresh
-    # cyberduck
     filezilla
+    localsend
     alsa-tools
     alsa-lib
+    blueberry
     foliate
     blanket
+    searxng
     xwayland-satellite # IDK if this actually helps but yay its here; ugh fuck bloat, and no its not 5am
-    nautilus # Needed for file browsers in programs running under xwayland; 🥳 I'm so happy this works now!
+    # nautilus # Needed for file browsers in programs running under xwayland; 🥳 I'm so happy this works now!
 
     nicotine-plus
     soundconverter
-
-    tor-browser
 
     # Anki
     anki
@@ -154,7 +166,7 @@
     # ollama
 
     # Note Taking
-    # obsidian
+    obsidian
 
     # Proton
     protonvpn-gui
@@ -173,8 +185,9 @@
     cmatrix
     fastfetch
     unzip
-    peazip
-    rar
+    p7zip
+    # peazip
+    # rar
     zoxide
     killall
     exiftool
@@ -182,7 +195,20 @@
 
     # Trial (Delete if don't like or not used)
     # mandelbulber
-  ];
+    # kicad
+  ])
+
+  ++ 
+
+  (import ./../../scripts { inherit pkgs; })
+
+  ++
+
+  (with pkgs-unstable; [
+    tuxguitar
+    niri
+  ]);
+
 
   nixpkgs.config.permittedInsecurePackages = [
     "mbedtls-2.28.10"
