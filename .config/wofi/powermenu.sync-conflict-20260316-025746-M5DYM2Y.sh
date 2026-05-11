@@ -3,14 +3,13 @@ entries="⇠ Logout\n⏾ Suspend\n⭮ Reboot\n⏻ Shutdown"
 selected=$(echo -e $entries|wofi --width 250 --height 320 --dmenu --cache-file /dev/null | awk '{print tolower($2)}')
 
 case $selected in
-  Logout)
+  logout)
     exec niri msg action quit;;
-  Lock)
-    exec hyprlock;;
-  Suspend)
+    # exec hyprctl dispatch exit;;
+  suspend)
     exec systemctl suspend;;
-  Reboot)
+  reboot)
     exec systemctl reboot;;
-  Shutdown)
+  shutdown)
     exec systemctl poweroff -i;;
 esac

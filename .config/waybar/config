@@ -15,34 +15,34 @@
   // "height": 64,
 
   "include": [
-    "~/.config/waybar/modules.json", 
+    "~/.config/waybar/modules.json" 
   ],
 
 
   // Choose the order of the modules
   "modules-left": [
-    "custom/power",
+    // "custom/power",
     "niri/window", 
-    "dwl/window",
+    // "dwl/window",
     // "custom/cava",
-    "mpd",
-    "hyprland/submap",
+    "mpd"
+    // "hyprland/submap",
   ],
 
   "modules-center": [
-    "niri/workspaces", 
+    "niri/workspaces" 
     // "dwl/tags", 
-    "ext/workspaces",
-    "hyprland/workspaces"
+    // "ext/workspaces",
+    // "hyprland/workspaces"
   ],
 
   "modules-right": [
     "custom/notification",
     // "custom/separator",
     // "backlight",
-    "wireplumber",
+    // "wireplumber",
     "battery",
     "group/hardware",
-    "clock",
+    "clock"
   ],
 }

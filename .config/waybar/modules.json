@@ -5,11 +5,11 @@
       "transition-duration": 500,
       "children-class": "childs",
       "transition-left-to-right": false,
-      "click-to-reveal": true,
+      "click-to-reveal": true
     },
     "modules": [
       "custom/nix", 
-      "hyprland/window",
+      "hyprland/window"
     ], 
   },
 
@@ -20,7 +20,7 @@
       "transition-duration": 500,
       "children-class": "childs",
       "transition-left-to-right": false,
-      "click-to-reveal": true,
+      "click-to-reveal": true
     },
 
     "modules": [
@@ -37,22 +37,32 @@
       "custom/separator2",
       "memory",
       "custom/separator2",
-      "temperature",
+      "temperature"
     ],
   },
 
   // Hardware label
   "custom/hardware-wrap": {
 	  "format": "[   ]",
-	  "tooltip-format": "Hardware group",
+	  "tooltip-format": "Hardware group"
   },
 
   "niri/workspaces": {
     "disable-scroll": true,
     "format": "{icon}",
     "format-icons": {
-	"active": "",
-	"default": ""
+      "active": "",
+      // "default": ""
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X"
     },
     
     // "format": "{icon}",
@@ -74,7 +84,7 @@
     "max-length": 20, //Character Count
     "separate-ouptputs": true,
     "icon": true,
-    "format": "[ {title} ]",
+    "format": "[ {title} ]"
   },
 
   "dwl/tags": {
@@ -90,7 +100,7 @@
       "7": "VII",
       "8": "VIII",
       "9": "IX",
-      "10": "X",
+      "10": "X"
     },
   },
 
@@ -108,7 +118,7 @@
       "7": "VII",
       "8": "VIII",
       "9": "IX",
-      "10": "X",
+      "10": "X"
     },
   },
 
@@ -117,7 +127,7 @@
     "max-length": 20,
     "rewrite": {
       "(.*) - Floorp": "Floorp",
-      "(.*) - nvim": " $1",
+      "(.*) - nvim": " $1"
     },
   },
 
@@ -134,21 +144,21 @@
       "7": "VII",
       "8": "VIII",
       "9": "IX",
-      "10": "X",
+      "10": "X"
     },
   },
 
   "hyprland/window": {
     "max-length": 20, //Character Count
     "separate-ouptputs": true,
-    "icon": true,
+    "icon": true
   },
 
   "hyprland/submap": {
     "format": "[ {} ]",
     "format-icons": {
       "move": " Move",
-      "resize": "󰩨 Resize",
+      "resize": "󰩨 Resize"
     },
   },
 
@@ -156,42 +166,42 @@
     "icon-size": 16,
     "spacing": 10,
     "show-passive-items": true,
-    "reverse-direction": true,
+    "reverse-direction": true
   },
 
   "clock": {
     "interval": 60,
     "format": "[ {:%I:%M %p} ]", // %b %d %Y  --Date formatting
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "[  {:%a %b %d} ]",
+    "format-alt": "[  {:%a %b %d} ]"
   },
 
   "temperature": {
     "critical-threshold": 80,
     "interval": 2,
     "format": " {temperatureC:>2}°C",
-    "format-icons": ["", "", ""],
+    "format-icons": ["", "", ""]
   },
 
   "cpu": {
     "interval": 2,
-    "format": "  {usage:>2}%",
+    "format": "  {usage:>2}%"
   },
 
   "memory": {
     "interval": 2,
-    "format": "  {used:0.1f}G/{total:0.1f}G",
+    "format": "  {used:0.1f}G/{total:0.1f}G"
   },
 
   "disk": {
     "interval": 15,
-    "format": "󰋊 {percentage_used:>2}%",
+    "format": "󰋊 {percentage_used:>2}%"
   },
 
   "backlight": {
     // "device": "acpi_video1",
     "format": "{icon} {percent:>2}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
   },
 
   "network": {
@@ -204,7 +214,7 @@
     "tooltip-format": "󰤯 {ifname} via {gwaddr}",
     "format-linked": "󰀦 {ifname} (No IP)",
     "format-disconnected": "󰀦 Disconnected", //Disconnected ⚠
-    "format-alt": "{ifname}: {gwaddr}/{cidr}",
+    "format-alt": "{ifname}: {gwaddr}/{cidr}"
   },
 
   "pulseaudio": {
@@ -222,15 +232,15 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""],
+      "default": ["", "", ""]
     },
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol"
   },
 
   "wireplumber": {
     "format": "[ {icon} {volume:>3}% ]",
     "format-muted": "[ 󰖁 {volume:>3}% ]",
-    "format-icons": ["", "", ""],
+    "format-icons": ["", "", ""]
   },
 
   "bluetooth": {
@@ -240,7 +250,7 @@
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
   },
 
   // This waybar build doesn't have support for cava.
@@ -264,12 +274,12 @@
     "input_delay": 2,
     "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "actions": {
-      "on-click-right": "mode",
+      "on-click-right": "mode"
     },
   },
 
   "custom/cava": {
-    "exec": "$HOME/.config/waybar/cava.sh",
+    "exec": "$HOME/.config/waybar/cava.sh"
   },
 
   "battery": {
@@ -280,16 +290,16 @@
     "states": {
       "warning": 30,
       "critical": 15
-    }
+    },
   },
 
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "󰈈",
-      "deactivated": "󰈉",
+      "deactivated": "󰈉"
     },
-    "start-activated": false,
+    "start-activated": false
   },
 
   "mpd": {
@@ -319,7 +329,7 @@
         "playing": ""
     },
     "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
   },
 
   "custom/power": {
@@ -327,7 +337,7 @@
     "format-icons": "󱄅", //   󱄅
     "exec-on-event": "true",
     "on-click": "$HOME/.config/wofi/powermenu.sh",
-    "tooltip-format": "Power Menu",
+    "tooltip-format": "Power Menu"
   },
 
   "custom/power": {
@@ -335,7 +345,7 @@
     "format-icons": "󱄅", //   󱄅
     "exec-on-event": "true",
     "on-click": "$HOME/.config/wofi/nixmenu.sh",
-    "tooltip-format": "Nix Menu",
+    "tooltip-format": "Nix Menu"
   },
 
   "custom/kdeconnect": {
@@ -343,7 +353,7 @@
     "format-icons": "",
     "exec-on-event": "true",
     "on-click": "kdeconnect-app",
-    "tooltip-format": "KDE Connect",
+    "tooltip-format": "KDE Connect"
   },
 
   "custom/bluetooth": {
@@ -351,7 +361,7 @@
     "format-icons": "",
     "exec-on-event": "true",
     "on-click": "$HOME/scripts/rofi-bluetooth",
-    "tooltip-format": "Bluetooth Menu",
+    "tooltip-format": "Bluetooth Menu"
   },
 
   "custom/wifi": {
@@ -359,19 +369,19 @@
     "format-icons": "",
     "exec-on-event": "true",
     "on-click": "$HOME/scripts/rofi-wifi",
-    "tooltip-format": "Wifi Menu",
+    "tooltip-format": "Wifi Menu"
   },
 
   "custom/separator": {
     "format": "{icon}",
     "format-icons": "|",
-    "tooltip": false,
+    "tooltip": false
   },
 
   "custom/separator2": {
     "format": "{icon}",
     "format-icons": "|",
-    "tooltip": false,
+    "tooltip": false
   },
 
   "custom/temp": {
@@ -379,7 +389,7 @@
     "interval": 1,
     "exec": "$HOME/scripts/temp",
     "return-type": "json",
-    "tooltip": true,
+    "tooltip": true
   },
 
   "custom/pacman": {
@@ -388,7 +398,7 @@
     "exec": "checkupdates | wc -l", // # of updates
     "exec-if": "exit 0", // always run; consider advanced run conditions
     "on-click": "foot -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
-    "signal": 8,
+    "signal": 8
   },
 
   "custom/notification": {
@@ -399,6 +409,6 @@
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true,
+    "escape": true
   },
 }

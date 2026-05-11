@@ -9,7 +9,7 @@
     },
     "modules": [
       "custom/nix", 
-      "hyprland/window",
+      "hyprland/window"
     ], 
   },
 
@@ -37,7 +37,7 @@
       "custom/separator2",
       "memory",
       "custom/separator2",
-      "temperature",
+      "temperature"
     ],
   },
 
