@@ -83,7 +83,7 @@ window#waybar {
 }
 
 #workspaces button.empty {
-  
+  color: @foreground;
 }
 
 #workspaces button.visible {
@@ -94,7 +94,7 @@ window#waybar {
   
 }
 #workspaces button.active {
-  color: @foreground;
+  color: @color6;
   padding: 15px;
 }
 
