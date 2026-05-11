@@ -86,6 +86,7 @@ alias rebuild='sudo nixos-rebuild switch --flake /etc/nixos#sundance'
 alias garbage='sudo nix-collect-garbage --delete-older-than 2d'
 alias gen='nix-env --list-generations'
 alias packs='ls /run/current-system/sw/bin/ ~/.nix-profile/bin/'
+alias ada='~/Documents/Programming/C/Ada/ada'
 
 # Shell intergrations
 # eval "$(fzf -zsh)" # invoke: ^r
@@ -94,6 +95,8 @@ eval "$(zoxide init --cmd cd zsh)"
 # Supress p10k error prompt
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-(cat ~/.cache/wal/sequences &)
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# (cat ~/.cache/wal/sequences &)
 
 # type any commands you wish to be run on startup:
