@@ -296,6 +296,7 @@ spawn-at-startup "mpd"
 spawn-at-startup "fcitx5"
 spawn-at-startup "xwayland"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "protonvpn-app"
 // spawn-sh-at-startup "noctalia-shell"
 spawn-sh-at-startup "randomDestinyWal"
 spawn-sh-at-startup "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-gnome" // Hacky fix for waybar and file browser to work
